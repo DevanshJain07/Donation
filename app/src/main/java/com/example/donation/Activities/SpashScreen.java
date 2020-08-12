@@ -18,7 +18,7 @@ public class SpashScreen extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(SpashScreen.this, RegisterActivity.class));
+                startActivity(new Intent(SpashScreen.this, LoginActivity.class));
             }
         }, 2500);
     }

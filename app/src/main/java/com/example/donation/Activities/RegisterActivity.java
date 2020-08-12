@@ -66,8 +66,7 @@ public class RegisterActivity extends AppCompatActivity {
                             startActivity(new Intent(RegisterActivity.this,MainActivity.class));
                             RegisterActivity.this.finish();
                         }else{
-                            startActivity(new Intent(RegisterActivity.this,MainActivity.class));
-                        }
+                            Toast.makeText(RegisterActivity.this, response, Toast.LENGTH_SHORT).show();                        }
                     }
                 },
                 new Response.ErrorListener() {
@@ -84,7 +83,7 @@ public class RegisterActivity extends AppCompatActivity {
                 params.put("city", city);
                 params.put("blood_group", blood_group);
                 params.put("password", password);
-                params.put("mobile", mobile);
+                params.put("number", mobile);
 
                 return params;
             }
@@ -120,7 +119,7 @@ public class RegisterActivity extends AppCompatActivity {
 //                params.put("city", city);
 //                params.put("blood_group", blood_group);
 //                params.put("password", password);
-//                params.put("mobile", mobile);
+//                params.put("number", mobile);
 //                return params;
 //            }
 //        };
@@ -148,7 +147,7 @@ public class RegisterActivity extends AppCompatActivity {
         else if(!valid_blood_groups.contains(blood_group)){
             showMessage("Blood group is invalid");
             return false;
-        }else if(mobile.length() !=10){
+        }else if(mobile.isEmpty() || mobile.length() !=10){
             showMessage("Number should be 10 digit");
             return false;
         }
@@ -156,6 +155,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void showMessage(String msg){
+
         Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
     }
 }
