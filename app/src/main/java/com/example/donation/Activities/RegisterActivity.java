@@ -144,6 +144,10 @@ public class RegisterActivity extends AppCompatActivity {
             showMessage("City Name is empty");
             return false;
         }
+        else if(password.isEmpty()){
+            showMessage("Password is invalid");
+            return false;
+        }
         else if(!valid_blood_groups.contains(blood_group)){
             showMessage("Blood group is invalid");
             return false;
