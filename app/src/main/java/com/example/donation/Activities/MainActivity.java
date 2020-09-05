@@ -24,8 +24,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.example.donation.Adapters.RequestAdapter;
 import com.example.donation.DataModels.RequestDataModel;
 import com.example.donation.R;
-import com.example.donation.Utils.Endpoints;
-import com.example.donation.Utils.VolleySingleton;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -35,6 +33,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        requestDataModels=new ArrayList<>();
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setOnMenuItemClickListener(new OnMenuItemClickListener() {
             @Override
@@ -58,12 +58,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        recyclerView = findViewById(R.id.recyclerView);
-        LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
+        recyclerView=findViewById(R.id.recyclerView);
+        LayoutManager layoutManager=new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
         recyclerView.setLayoutManager(layoutManager);
-        requestAdapter = new RequestAdapter(requestDataModels, this);
+        requestAdapter=new RequestAdapter(requestDataModels,this);
         recyclerView.setAdapter(requestAdapter);
         populateHomePage();
+
     }
 
     private void populateHomePage(){

@@ -50,13 +50,13 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.ViewHold
         holder.callButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                //later
             }
         });
         holder.shareButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-
+            public void onClick(View v) {
+                //later
             }
         });
     }
@@ -74,12 +74,10 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.ViewHold
         ImageView imageView,callButton,shareButton;
         ViewHolder(final View itemView) {
             super(itemView);
-            message=itemView.findViewById(R.id.message);
-            imageView=itemView.findViewById(R.id.image);
-            callButton=itemView.findViewById(R.id.call_button);
-            shareButton=itemView.findViewById(R.id.share_button);
-
-
+            message = itemView.findViewById(R.id.message);
+            imageView = itemView.findViewById(R.id.image);
+            callButton = itemView.findViewById(R.id.call_button);
+            shareButton = itemView.findViewById(R.id.share_button);
         }
 
     }

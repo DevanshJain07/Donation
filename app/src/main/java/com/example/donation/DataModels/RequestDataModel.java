@@ -5,8 +5,8 @@ import com.google.gson.annotations.SerializedName;
 
 public class RequestDataModel {
 
-    String message;
-    String imageUrl;
+    private String message;
+    private String imageUrl;
 
     public RequestDataModel(String message,String imageUrl){
         this.message=message;
