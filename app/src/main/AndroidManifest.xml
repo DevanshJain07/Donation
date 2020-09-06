@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.SearchResults"></activity>
+        <activity android:name=".Activities.MainRequestActivity"></activity>
+        <activity android:name=".Activities.SearchResults" />
         <activity android:name=".Activities.MakeRequestActivity" />
         <activity android:name=".Activities.SearchActivity" />
         <activity android:name=".Activities.LoginActivity" />
