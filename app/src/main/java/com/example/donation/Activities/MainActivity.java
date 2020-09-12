@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         make_request_button.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this,MainRequestActivity.class));
+                startActivity(new Intent(MainActivity.this,MakeRequestActivity.class));
             }
         });
         requestDataModels=new ArrayList<>();

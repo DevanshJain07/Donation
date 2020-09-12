@@ -6,3 +6,9 @@ public class Endpoints {
     public static final String login_url=base_url+"login.php";
     public static final String upload_request=base_url+"upload_request.php";
 }
+//onationofsomething
+//7yDT3DRvOq6l^GBSIbSv
+
+//id14807440_donation
+//id14807440_donationofsomething
+//~2$i+-l-I*Vw=J5b
