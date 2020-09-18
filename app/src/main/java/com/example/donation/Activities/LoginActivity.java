@@ -161,8 +161,8 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit()
                             .putString("number", number).apply();
-//                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit()
-//                            .putString("city", response).apply();
+                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit()
+                            .putString("city", response).apply();
                     LoginActivity.this.finish();
                 } else {
                     Toast.makeText(LoginActivity.this, response, Toast.LENGTH_SHORT).show();
