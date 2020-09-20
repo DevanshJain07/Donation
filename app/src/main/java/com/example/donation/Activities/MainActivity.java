@@ -74,7 +74,12 @@ public class MainActivity extends AppCompatActivity {
         requestAdapter=new RequestAdapter(requestDataModels,this);
         recyclerView.setAdapter(requestAdapter);
         populateHomePage();
-
+        TextView pick_location=findViewById(R.id.pick_location);
+        String location=PreferenceManager.getDefaultSharedPreferences(this)
+                .getString("city","no_city_found");
+        if(!location.equals("no_city_found")){
+            pick_location.setText(location);
+        }
     }
 
     private void populateHomePage(){
@@ -106,10 +111,3 @@ public class MainActivity extends AppCompatActivity {
         VolleySingleton.getInstance(this).addToRequestQueue(stringRequest);
     }
 }
-
-//     RequestDataModel requestDataModel=new RequestDataModel("Lrem ipsum","https://img.jakpost.net/c/2019/04/12/2019_04_12_69889_1555057929._large.jpg");
-//     requestDataModels.add(requestDataModel);
-//     requestDataModels.add(requestDataModel);
-//    requestDataModels.add(requestDataModel);
-//     requestAdapter.notifyDataSetChanged();
-

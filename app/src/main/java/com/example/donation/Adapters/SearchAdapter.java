@@ -15,20 +15,23 @@ import androidx.core.content.PermissionChecker;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.donation.DataModels.Donor;
 import com.example.donation.DataModels.RequestDataModel;
 import com.example.donation.R;
 
+import java.net.URI;
 import java.util.List;
 
 import static android.Manifest.permission.CALL_PHONE;
+import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 
-public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.ViewHolder> {
+public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder> {
 
-    private List<RequestDataModel> dataSet;
+    private List<Donor> dataSet;
     private Context context;
 
-    public RequestAdapter(
-            List<RequestDataModel> dataSet, Context context) {
+    public SearchAdapter(
+            List<Donor> dataSet, Context context) {
         this.dataSet = dataSet;
         this.context = context;
     }
@@ -37,7 +40,7 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.ViewHold
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.request_item_layout, parent, false);
+                .inflate(R.layout.donor_item, parent, false);
         return new ViewHolder(view);
     }
 
@@ -45,9 +48,10 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder,
                                  final int position) {
-        holder.message.setText(dataSet.get(position).getMessage());
-        Glide.with(context).load(dataSet.get(position).getUrl()).into(holder.imageView);
-        holder.callButton.setOnClickListener(new View.OnClickListener() {
+        String str="Name: " +dataSet.get(position);
+        str="\nCity: " +dataSet.get(position).getCity();
+        holder.message.setText(str);
+       holder.callButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (PermissionChecker.checkSelfPermission(context, CALL_PHONE)
@@ -58,12 +62,6 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.ViewHold
                 }else {
                     ((Activity)context).requestPermissions(new String[]{CALL_PHONE},401);
                 }
-            }
-        });
-        holder.shareButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //later
             }
         });
     }
@@ -78,13 +76,12 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.ViewHold
     class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView message;
-        ImageView imageView,callButton,shareButton;
+        ImageView imageView,callButton;
         ViewHolder(final View itemView) {
             super(itemView);
             message = itemView.findViewById(R.id.message);
             imageView = itemView.findViewById(R.id.image);
             callButton = itemView.findViewById(R.id.call_button);
-            shareButton = itemView.findViewById(R.id.share_button);
         }
 
     }

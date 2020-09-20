@@ -58,7 +58,13 @@ public class SearchActivity extends AppCompatActivity {
                 Method.POST, Endpoints.search_donors, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-              }
+                Intent intent=new Intent(SearchActivity.this,SearchResults.class);
+                intent.putExtra("city",city);
+                intent.putExtra("blood_group",blood_group);
+                intent.putExtra("json",response);
+                startActivity(intent);
+
+            }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
