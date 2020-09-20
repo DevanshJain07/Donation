@@ -63,7 +63,13 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.ViewHold
         holder.shareButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //later
+                Intent shareIntent = new Intent(Intent.ACTION_CALL);
+                shareIntent.setType("text/plain");
+                shareIntent.putExtra(Intent.EXTRA_TEXT,
+                        holder.message.getText().toString() + "\n\nContact: " + dataSet.get(position)
+                .getNumber());
+                shareIntent.putExtra(Intent.EXTRA_SUBJECT,"Hey,could u help");
+                context.startActivity(Intent.createChooser(shareIntent,"Share"));
             }
         });
     }
