@@ -1,36 +1,5 @@
 package com.example.donation.DataModels;
 
-//import com.google.gson.annotations.Expose;
-//import com.google.gson.annotations.SerializedName;
-//
-//public class RequestDataModel {
-//
-//    private String message;
-//    private String imageUrl;
-//
-//    public RequestDataModel(String message,String imageUrl){
-//        this.message=message;
-//        this.imageUrl=imageUrl;
-//    }
-//
-//    public String getMessage() {
-//        return message;
-//    }
-//
-//    public void setMessage(String message) {
-//        this.message = message;
-//    }
-//
-//    public String getImageUrl(){
-//        return imageUrl;
-//    }
-//
-//    public void setImageUrl(String imageUrl) {
-//        this.imageUrl = imageUrl;
-//    }
-//
-//}
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -80,5 +49,4 @@ public class RequestDataModel {
     public void setNumber(String number) {
         this.number = number;
     }
-
 }

@@ -38,6 +38,7 @@ import java.io.File;
 import java.net.URISyntaxException;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 public class MakeRequestActivity extends AppCompatActivity {
 
     EditText messageText;
@@ -142,7 +143,7 @@ public class MakeRequestActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         try {
                             if(response.getBoolean("success")){
-                                showMessage("Successful");
+                                showMessage("Succesfull");
                                 MakeRequestActivity.this.finish();
                             }else{
                                 showMessage(response.getString("message"));

@@ -16,12 +16,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.LayoutManager;
 import com.android.volley.AuthFailureError;
-import com.android.volley.Response;
+import com.android.volley.Request.Method;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.androidnetworking.common.Method;
 import com.example.donation.Adapters.RequestAdapter;
 import com.example.donation.DataModels.RequestDataModel;
 import com.example.donation.R;
@@ -29,14 +28,12 @@ import com.example.donation.Utils.Endpoints;
 import com.example.donation.Utils.VolleySingleton;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-
 
 public class MainActivity extends AppCompatActivity {
 
@@ -48,14 +45,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        TextView make_request_button=findViewById(R.id.make_request_button);
+        TextView make_request_button = findViewById(R.id.make_request_button);
         make_request_button.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this,MakeRequestActivity.class));
+                startActivity(new Intent(MainActivity.this, MakeRequestActivity.class));
             }
         });
-        requestDataModels=new ArrayList<>();
+        requestDataModels = new ArrayList<>();
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setOnMenuItemClickListener(new OnMenuItemClickListener() {
             @Override
@@ -68,33 +65,36 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        recyclerView=findViewById(R.id.recyclerView);
-        LayoutManager layoutManager=new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
+        recyclerView = findViewById(R.id.recyclerView);
+        LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
-        requestAdapter=new RequestAdapter(requestDataModels,this);
+        requestAdapter = new RequestAdapter(requestDataModels, this);
         recyclerView.setAdapter(requestAdapter);
         populateHomePage();
-        TextView pick_location=findViewById(R.id.pick_location);
-        String location=PreferenceManager.getDefaultSharedPreferences(this)
-                .getString("city","no_city_found");
-        if(!location.equals("no_city_found")){
+        TextView pick_location = findViewById(R.id.pick_location);
+        String location = PreferenceManager.getDefaultSharedPreferences(this)
+                .getString("city", "no_city_found");
+        if (!location.equals("no_city_found")) {
             pick_location.setText(location);
         }
     }
 
-    private void populateHomePage(){
-        final String city=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("city","no_city");
+
+    private void populateHomePage() {
+        final String city = PreferenceManager.getDefaultSharedPreferences(getApplicationContext())
+                .getString("city", "no_city");
         StringRequest stringRequest = new StringRequest(
-                Method.POST, Endpoints.get_requests, new Response.Listener<String>() {
+                Method.POST, Endpoints.get_requests, new Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Gson gson=new Gson();
-                Type type=new TypeToken<List<RequestDataModel>>(){}.getType();
-                List<RequestDataModel> dataModels=gson.fromJson(response,type);
+                Gson gson = new Gson();
+                Type type = new TypeToken<List<RequestDataModel>>() {
+                }.getType();
+                List<RequestDataModel> dataModels = gson.fromJson(response, type);
                 requestDataModels.addAll(dataModels);
                 requestAdapter.notifyDataSetChanged();
             }
-                }, new Response.ErrorListener() {
+        }, new ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(MainActivity.this, "Something went wrong:(", Toast.LENGTH_SHORT).show();
@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("city",city);
+                params.put("city", city);
                 return params;
             }
         };
